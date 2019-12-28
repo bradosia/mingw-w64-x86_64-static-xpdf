@@ -27,6 +27,7 @@ cmake -DBUILD_SHARED_LIBS=OFF -DBUILD_STATIC_LIBS=ON -DCMAKE_BUILD_TYPE=Release 
 cd build
 make
 ```
-4. Tackle each error that comes up and find the library objects that are generated.
+4. Tackle each error that comes up and patch as needed
+5. find the library objects that are generated.
 
 
