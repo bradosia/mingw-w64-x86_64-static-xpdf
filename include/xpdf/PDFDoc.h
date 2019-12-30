@@ -90,9 +90,7 @@ public:
     { return catalog->getPage(page)->getRotate(); }
 
   // Get number of pages.
-  int getNumPages() {
-	  printf("====== PDFDoc::getNumPages(): 1 ===========\n");
-	  return catalog->getNumPages(); }
+  int getNumPages() { return catalog->getNumPages(); }
 
   // Return the contents of the metadata stream, or NULL if there is
   // no metadata.
