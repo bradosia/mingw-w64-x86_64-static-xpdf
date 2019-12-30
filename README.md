@@ -4,6 +4,7 @@ Includes a static library linked test program in windows with MinGW64 compiler. 
 Features demonstrated:
 * Open PDF
 * print full text
+* PDF to PNG
 
 Compiler: 
 - gcc (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 8.1.0
