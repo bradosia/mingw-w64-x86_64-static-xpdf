@@ -120,22 +120,22 @@ int main(int argc, char *argv[]) {
 	}
 	if (textEOL[0]) {
 		if (!globalParams->setTextEOL(textEOL)) {
-			fprintf(stderr, "Bad '-eol' value on command line\n");
+			printf("Bad 'eol' value");
 		}
 	}
 	if (enableFreeTypeStr[0]) {
 		if (!globalParams->setEnableFreeType(enableFreeTypeStr)) {
-			fprintf(stderr, "Bad '-freetype' value on command line\n");
+			printf("Bad 'freetype' value");
 		}
 	}
 	if (antialiasStr[0]) {
 		if (!globalParams->setAntialias(antialiasStr)) {
-			fprintf(stderr, "Bad '-aa' value on command line\n");
+			printf("Bad 'antialias' value");
 		}
 	}
 	if (vectorAntialiasStr[0]) {
 		if (!globalParams->setVectorAntialias(vectorAntialiasStr)) {
-			fprintf(stderr, "Bad '-aaVector' value on command line\n");
+			printf("Bad 'vectorAntialias' value");
 		}
 	}
 	if (noPageBreaks) {
@@ -202,6 +202,7 @@ int main(int argc, char *argv[]) {
 
 		rawOrder = true;
 		// write text file
+
 		if (tableLayout) {
 			textOutControl.mode = textOutTableLayout;
 			textOutControl.fixedPitch = fixedPitch;
@@ -239,12 +240,9 @@ int main(int argc, char *argv[]) {
 
 		exitCode = 0;
 
-		// clean up
-		delete doc;
-		uMap->decRefCnt();
-
 		// PDF TO IMAGE
 		// write PNG files
+
 		if (mono) {
 			paperColor[0] = 0xff;
 			splashOut = new SplashOutputDev(splashModeMono1, 1, false,
@@ -262,7 +260,7 @@ int main(int argc, char *argv[]) {
 			splashOut->setNoComposite(gTrue);
 		}
 
-		/*splashOut->startDoc(doc->getXRef());
+		splashOut->startDoc(doc->getXRef());
 		for (pg = firstPage; pg <= lastPage; ++pg) {
 			doc->displayPage(splashOut, pg, resolution, resolution, 0, false,
 					true, false);
@@ -325,16 +323,16 @@ int main(int argc, char *argv[]) {
 				finishPNG(&png, &pngInfo);
 				fclose(f);
 			}
-		}*/
+		}
 		delete splashOut;
 
 		exitCode = 0;
+
+		// clean up
+		delete doc;
+		uMap->decRefCnt();
 	}
 	delete globalParams;
-
-// check for memory leaks
-	Object::memCheck(stderr);
-	gMemReport(stderr);
 
 	system("pause");
 	return exitCode;
